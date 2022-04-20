@@ -10,11 +10,11 @@ To reproduce the experiments, you require following packages:
 * numpy
 * matplotlib
 * networkx
-* qiski
+* qiskit
 * cvxpy
 
-In order to ensure there are not compatibility problems, I suggest to use the exact same version of these libraries as used during the deveoplment of the code.
-This can be easily achieve for instance with a virtual environment:
+In order to ensure there are no compatibility problems, I suggest to use the exact same version of these libraries as used during the deveoplment of the code.
+This can be easily achieved with a virtual environment:
 
 ```bash
 python3.8 -m venv <path to environment>
@@ -23,11 +23,11 @@ pip install numpy==1.19.5 matplotlib==3.3.3 networkx==2.5 qiskit==0.23.2
 pip install cvxpy
 ```
 
-Note that the used version of qiskit did not support python version >= 3.9 yet.
+Note that the used version of qiskit did not support python versions >= 3.9 yet.
 
 Overview of code
 ================
-Each subdirectory contains the files required to reproduce one of the figures in the paper. Each subdirectory contains a file `gen_data.py`, which generates the data to be plotted, as well as a `plot_data.py` file which generates the actual plot with matplotlib.
+Each subdirectory contains the files required to reproduce one of the figures in the paper. Each subdirectory contains a file `gen_data.py`, which generates the data to be plotted, as well as a file `plot_data.py` which generates the actual plot with matplotlib.
 
 The python files in the main directory contain code to generate a BPQM decoding quantum circuit given a specified binary linear code.
 The qiskit library is used to handle the generation and simulation of quantum circuits.
@@ -59,7 +59,8 @@ theta = 0.2 * np.pi
 # specify cloner to be used
 cloner = VarNodeCloner(theta) # ENU cloner
 
-# run BPQM to decode fifth bit with an unrolling depth of 2
+# run BPQM to decode the fifth bit with an unrolling depth of 2
+# (codeword bits are zero-indexed)
 p_bit = decode_bpqm(code, theta, cloner=VarNodeCloner(theta), height=2, mode='bit', bit=4, only_zero_codeword=True, debug=False)
 print("The probability of successfully decoding the first codeword bit is", p_bit)
 
@@ -69,7 +70,7 @@ print("The probability of successfully decoding the complete codeword bit is", p
 ```
 
 More detailed documentation about the `decode_bpqm` function can be found in the file `decoders.py`.
-If you are interested in taking a look at the computational graphs and quantum circuits involved in the decoding, you can set the 'debug' flag to True or have a look at the source of of the `decode_bpqm` function itself.
+If you are interested in taking a look at the computational graphs and quantum circuits involved in the decoding, you can set the `debug` flag to `True` or have a look at the source of of the `decode_bpqm` function itself.
 
 The file `decoders.py` also contains additional helper functions to evaluate the best achievable decoding performance for classical and quantum decoders for bitwise and codeword-wise decoding.
 

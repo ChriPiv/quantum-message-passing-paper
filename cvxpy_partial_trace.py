@@ -2,6 +2,8 @@ import numpy as np
 import cvxpy
 from cvxpy.expressions.expression import Expression
 
+# shamelessly taken from here:
+# https://github.com/cvxpy/cvxpy/issues/563
 
 def expr_as_np_array(cvx_expr):
     if cvx_expr.is_scalar():

@@ -66,7 +66,7 @@ print("The probability of successfully decoding the first codeword bit is", p_bi
 
 # run BPQM to decode complete codeword with an unrolling depth of 2
 p_codeword = decode_bpqm(code, theta, cloner=VarNodeCloner(theta), height=2, mode='codeword', order=[0,1,2,3], only_zero_codeword=True, debug=False)
-print("The probability of successfully decoding the complete codeword bit is", p_codeword)
+print("The probability of successfully decoding the complete codeword is", p_codeword)
 ```
 
 More detailed documentation about the `decode_bpqm` function can be found in the file `decoders.py`.

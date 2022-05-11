@@ -65,5 +65,3 @@ class LinearCode(object):
         new_root = handle_node(root, None, 0)
         return G, occurances, new_root
 
-# TODO add a function somewhere to add angle info into a graph!
-# utils.py?
